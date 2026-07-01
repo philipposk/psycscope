@@ -87,6 +87,53 @@ export function defaultAnswer(): LikertValue {
 }
 
 export const STORAGE_KEY = "psycscope-assessment-v1";
+export const DRAFT_KEY = "psycscope-draft-v1";
+
+export type AssessmentDraft = {
+  answers: AssessmentAnswers;
+  step: "primary" | "deepening" | "narrative";
+  idx: number;
+  narrative: string;
+  updatedAt: string;
+};
+
+export function saveDraft(draft: Omit<AssessmentDraft, "updatedAt">) {
+  if (typeof window === "undefined") return;
+  try {
+    const payload: AssessmentDraft = { ...draft, updatedAt: new Date().toISOString() };
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
+  } catch {
+    // private mode / quota — ignore
+  }
+}
+
+export function loadDraft(): AssessmentDraft | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    const d = JSON.parse(raw) as AssessmentDraft;
+    if (!d?.answers || typeof d.answers !== "object") return null;
+    if (!d.step || !["primary", "deepening", "narrative"].includes(d.step)) return null;
+    return d;
+  } catch {
+    return null;
+  }
+}
+
+export function clearDraft() {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(DRAFT_KEY);
+  } catch {
+    // ignore
+  }
+}
+
+export function hasDraft(): boolean {
+  const d = loadDraft();
+  return !!d && Object.keys(d.answers).length > 0;
+}
 
 export function saveLocal(result: AssessmentResult) {
   if (typeof window === "undefined") return;
