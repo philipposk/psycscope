@@ -10,8 +10,8 @@ import {
   loadDraft,
   questionsForPhase,
   saveDraft,
-  saveLocal,
 } from "@/lib/scoring";
+import { saveSessionResult } from "@/lib/sessionResult";
 import type { AssessmentAnswers, LikertValue } from "@/lib/types";
 
 type Step = "primary" | "deepening" | "narrative" | "analyzing";
@@ -112,8 +112,7 @@ export default function AssessmentClient() {
 
   function finishAssessment(result: ReturnType<typeof buildResult>) {
     clearDraft();
-    saveLocal(result);
-    sessionStorage.setItem("psycscope-latest", JSON.stringify(result));
+    saveSessionResult(result);
     router.push("/results");
   }
 

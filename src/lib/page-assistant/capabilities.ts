@@ -46,7 +46,7 @@ export function psycCapabilities(): Capability[] {
       async run() {
         if (typeof window === "undefined") return { summary: "Open results in the browser." };
         try {
-          const raw = sessionStorage.getItem("psycscope-latest") || localStorage.getItem("psycscope-assessment-v1");
+          const raw = sessionStorage.getItem("psycscope-latest");
           const parsed = raw ? JSON.parse(raw) : null;
           const result = Array.isArray(parsed) ? parsed[0] : parsed;
           if (!result?.scores) return { summary: "No results yet. Complete /assess first." };
@@ -70,7 +70,7 @@ export function psycCapabilities(): Capability[] {
         required: ["path"],
       },
       async run({ path }: { path: string }) {
-        const allowed = ["/", "/assess", "/results", "/history", "/about"];
+        const allowed = ["/", "/assess", "/results", "/demo", "/about"];
         if (!allowed.includes(path)) throw new Error(`Allowed: ${allowed.join(", ")}`);
         if (typeof window !== "undefined") window.location.href = path;
         return { ok: true, path };

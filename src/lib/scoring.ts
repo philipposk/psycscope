@@ -86,7 +86,6 @@ export function defaultAnswer(): LikertValue {
   return 0;
 }
 
-export const STORAGE_KEY = "psycscope-assessment-v1";
 export const DRAFT_KEY = "psycscope-draft-v1";
 
 export type AssessmentDraft = {
@@ -133,26 +132,4 @@ export function clearDraft() {
 export function hasDraft(): boolean {
   const d = loadDraft();
   return !!d && Object.keys(d.answers).length > 0;
-}
-
-export function saveLocal(result: AssessmentResult) {
-  if (typeof window === "undefined") return;
-  const prev = loadHistory();
-  prev.unshift(result);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(prev.slice(0, 20)));
-}
-
-export function loadHistory(): AssessmentResult[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-}
-
-export function loadLatest(): AssessmentResult | null {
-  const h = loadHistory();
-  return h[0] ?? null;
 }

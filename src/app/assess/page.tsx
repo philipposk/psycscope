@@ -5,8 +5,8 @@ export default function AssessPage() {
     <div>
       <h1 style={{ marginTop: 0 }}>Screening questionnaire</h1>
       <p style={{ color: "var(--text-muted)" }}>
-        Answer honestly. There are no wrong answers. You can pause and return later — progress
-        is kept in this browser until you finish.
+        Answer honestly. Progress saves on your device while you answer — safe to switch apps.
+        When finished, email yourself the results; we don&apos;t keep them on the website.
       </p>
       <AssessmentClient />
     </div>

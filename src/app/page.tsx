@@ -13,6 +13,9 @@ export default function HomePage() {
         <Link href="/assess" className="btn btn-primary" style={{ fontSize: "1.05rem", padding: "0.85rem 1.5rem" }}>
           Start screening — about 10 minutes
         </Link>
+        <Link href="/demo" className="btn btn-secondary" style={{ marginLeft: "0.75rem", fontSize: "1.05rem", padding: "0.85rem 1.5rem" }}>
+          See example results
+        </Link>
       </section>
 
       <div className="disclaimer">

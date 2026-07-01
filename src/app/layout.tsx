@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
+import LegacyStorageCleanup from "@/components/LegacyStorageCleanup";
 import PageAssistantWidget from "@/components/PageAssistantWidget";
 import { createSupabaseServer } from "@/lib/supabase/server";
 
@@ -26,6 +27,7 @@ export default async function RootLayout({
           <Header userEmail={user?.email} />
           <main>{children}</main>
         </div>
+        <LegacyStorageCleanup />
         <PageAssistantWidget />
       </body>
     </html>

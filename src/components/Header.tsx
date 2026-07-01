@@ -14,7 +14,7 @@ export default function Header({
       <nav className="nav-links">
         <Link href="/assess">Screen</Link>
         <Link href="/results">Results</Link>
-        <Link href="/history">History</Link>
+        <Link href="/demo">Example</Link>
         <Link href="/about">About</Link>
         {userEmail ? (
           <span style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>

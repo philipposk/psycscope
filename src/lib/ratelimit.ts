@@ -2,12 +2,13 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { NextResponse } from "next/server";
 
-export type RateBucket = "analyze" | "pa" | "save";
+export type RateBucket = "analyze" | "pa" | "save" | "email";
 
 const BUCKETS: Record<RateBucket, { requests: number; window: `${number} ${"s" | "m" | "h" | "d"}` }> = {
   analyze: { requests: 8, window: "1 h" },
   pa: { requests: 40, window: "1 m" },
   save: { requests: 20, window: "1 m" },
+  email: { requests: 5, window: "1 h" },
 };
 
 const limiters = new Map<RateBucket, Ratelimit>();

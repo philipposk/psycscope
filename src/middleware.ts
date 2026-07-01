@@ -7,7 +7,7 @@ const PUBLIC = [
   "/",
   "/assess",
   "/results",
-  "/history",
+  "/demo",
   "/about",
   "/privacy",
   "/terms",
@@ -16,6 +16,8 @@ const PUBLIC = [
   "/auth/callback",
   "/auth/sign-out",
   "/api/analyze",
+  "/api/email-results",
+  "/api/helplines",
   "/api/pa",
 ];
 

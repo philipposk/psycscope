@@ -42,6 +42,7 @@ export type AssessmentResult = {
   narrative?: string;
   aiSummary?: string;
   aiRefined?: DisorderScore[];
+  isDemo?: boolean;
 };
 
 export type AssessmentPhase = "intro" | "questions" | "narrative" | "analyzing" | "results";
