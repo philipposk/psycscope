@@ -30,6 +30,18 @@ export default function PrivacyPage() {
           </li>
         </ul>
 
+        <h2>Assistant chats</h2>
+        <p>
+          You choose where your conversations with the on-page assistant are kept, in its
+          settings: <strong>on this device</strong> (the default — saved only in your browser, not
+          in our database), <strong>in your account</strong> (only if you sign in and pick it; they
+          are stored in our database so you can open them on other devices), or{" "}
+          <strong>not at all</strong>. Chats saved to your account are visible only to you, and
+          are deleted automatically after 12 months without activity. You can delete one chat or
+          all of them at any time from the assistant. Whichever you choose, each message is sent
+          through our server to an AI provider to get a reply; the server does not keep it.
+        </p>
+
         <h2>AI analysis</h2>
         <p>
           Optional AI processing sends your answers (and optional narrative) to our LLM providers
