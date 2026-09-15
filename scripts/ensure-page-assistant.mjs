@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /** Ensure vendor/page-assistant exists and is built (preinstall clone + postinstall build). */
-import { existsSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, rmSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -18,6 +18,7 @@ const manifest = path.join(dir, "package.json");
  * build.
  */
 const PIN = "d0d8856ccb28be4e18ce97e9c470083dd3b764ea";
+const REPO = "https://github.com/philipposk/page-assistant.git";
 const cloneOnly = process.argv.includes("--clone-only");
 const buildOnly = process.argv.includes("--build-only");
 
@@ -43,13 +44,19 @@ function clone() {
   // npm can create the empty file: dependency directory before this runs, so an
   // existing `dir` is not proof of a checkout — look for the repo's manifest.
   if (!existsSync(manifest)) {
-    console.log(`[page-assistant] cloning ${PIN.slice(0, 7)}…`);
+    // Fetch the commit itself, not a branch: the PIN keeps working after the branch it
+    // was made on is merged and deleted.
+    console.log(`[page-assistant] fetching ${PIN.slice(0, 7)}…`);
     rmSync(dir, { recursive: true, force: true });
-    execSync("git clone --filter=blob:none https://github.com/philipposk/page-assistant.git vendor/page-assistant", {
-      cwd: root,
-      stdio: "inherit",
-    });
-    execSync(`git checkout --detach ${PIN}`, { cwd: dir, stdio: "inherit" });
+    mkdirSync(dir, { recursive: true });
+    for (const cmd of [
+      "git init -q",
+      `git remote add origin ${REPO}`,
+      `git fetch --depth 1 origin ${PIN}`,
+      "git checkout -q FETCH_HEAD",
+    ]) {
+      execSync(cmd, { cwd: dir, stdio: "inherit" });
+    }
   }
 }
 
