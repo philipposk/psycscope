@@ -89,7 +89,9 @@ export default function AboutPage() {
       <h2 id="assistant">Page Assistant</h2>
       <p style={{ color: "var(--text-muted)" }}>
         Embedded assistant (page-assistant by 6x7.gr) explains disorders and navigates the app.
-        Voice uses server-side TTS when configured.
+        Voice uses server-side TTS when configured. Its settings let you keep chats on this
+        device (the default), save them to your account, or not save them at all — see{" "}
+        <Link href="/privacy">Privacy</Link>.
       </p>
 
       <CrisisHelp />
