@@ -5,7 +5,13 @@ import {
 } from "@page-assistant/widget";
 import { createSupabaseClient } from "@/lib/supabase/client";
 
-/** Rows this app writes to public.assistant_chats carry this `app` value. */
+/**
+ * PsycScope's own table. The Supabase project is shared by many apps, so it is psyc_
+ * prefixed rather than the adapter's default `assistant_chats`.
+ */
+export const PSYC_CHAT_TABLE = "psyc_assistant_chats";
+
+/** Rows this app writes to public.psyc_assistant_chats carry this `app` value. */
 export const PSYC_CHAT_APP = "psycscope";
 
 export interface PsycChatHistory {
@@ -19,7 +25,7 @@ export interface PsycChatHistory {
  * isn't configured (the assistant then offers "this device" and "don't save" only).
  *
  * Built on the app's browser client, so every query runs as the signed-in user and
- * row-level security (supabase/migrations/0002_assistant_chats.sql) limits them to their
+ * row-level security (supabase/migrations/0002_psyc_assistant_chats.sql) limits them to their
  * own rows. Never pass a service-role client here.
  *
  * The reference adapter's currentUserId() reads the signed-in user from the session. The
@@ -32,7 +38,11 @@ export function psycChatHistory(): PsycChatHistory | null {
   }
   const supabase = createSupabaseClient();
   return {
-    adapter: supabaseChatHistoryAdapter(supabase, { app: PSYC_CHAT_APP, retentionMonths: 12 }),
+    adapter: supabaseChatHistoryAdapter(supabase, {
+      table: PSYC_CHAT_TABLE,
+      app: PSYC_CHAT_APP,
+      retentionMonths: 12,
+    }),
     onAuthChange(onChange) {
       const { data } = supabase.auth.onAuthStateChange((event) => {
         if (event === "SIGNED_IN" || event === "SIGNED_OUT") onChange();

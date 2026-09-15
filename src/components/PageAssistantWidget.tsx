@@ -27,7 +27,7 @@ export default function PageAssistantWidget() {
          same device default. Device chats are kept per signed-in person, and chats
          made while signed out are never offered to whoever signs in next — this may
          be a shared computer. Account chats are deleted after 12 months without
-         activity (supabase/migrations/0002_assistant_chats.sql). */
+         activity (supabase/migrations/0002_psyc_assistant_chats.sql). */
       chatHistoryMode: "device",
       chatHistoryAdapter: history?.adapter,
       offerSignedOutChats: false,
