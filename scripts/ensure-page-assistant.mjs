@@ -17,7 +17,7 @@ const manifest = path.join(dir, "package.json");
  * assistants — and did: `main` moved on mid-upgrade. Bump this deliberately, with a
  * build.
  */
-const PIN = "d0d8856ccb28be4e18ce97e9c470083dd3b764ea";
+const PIN = "1ae9432b1fab700cbfd7fffe81ef3ffdb10eb96a";
 const REPO = "https://github.com/philipposk/page-assistant.git";
 const cloneOnly = process.argv.includes("--clone-only");
 const buildOnly = process.argv.includes("--build-only");
