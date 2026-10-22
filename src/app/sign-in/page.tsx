@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createSupabaseClient } from "@/lib/supabase/client";
 import { isDisposableEmail } from "@/lib/email";
+import { GoogleIdentityButton } from "@/components/GoogleIdentityButton";
 
 export default function SignInPage() {
   const supabase = createSupabaseClient();
@@ -86,9 +87,11 @@ export default function SignInPage() {
           {busy ? "…" : mode === "in" ? "Sign in" : "Sign up"}
         </button>
       </form>
-      <button type="button" className="btn btn-secondary" style={{ width: "100%", marginTop: "0.75rem" }} onClick={google}>
-        Continue with Google
-      </button>
+      <GoogleIdentityButton getSupabase={() => supabase} onSignedIn={() => window.location.assign(nextUrl())} onError={setErr}>
+        <button type="button" className="btn btn-secondary" style={{ width: "100%", marginTop: "0.75rem" }} onClick={google}>
+          Continue with Google
+        </button>
+      </GoogleIdentityButton>
       <p style={{ textAlign: "center", marginTop: "1rem", fontSize: "0.9rem" }}>
         {mode === "in" ? (
           <>
