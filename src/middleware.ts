@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { sharedCookieOptions } from "@/lib/supabase/cookies";
+import { trackAppAccess } from "./app-access";
 
 // Open access for screening — auth optional for saving history
 const PUBLIC = [
@@ -46,6 +47,7 @@ export async function middleware(req: NextRequest) {
   );
 
   const { data: { user } } = await supabase.auth.getUser();
+  await trackAppAccess(supabase, user, req, res, "psycscope");
   if (!user) {
     const url = req.nextUrl.clone();
     url.pathname = "/sign-in";
