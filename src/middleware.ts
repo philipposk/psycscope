@@ -3,7 +3,7 @@ import { createServerClient } from "@supabase/ssr";
 import { sharedCookieOptions } from "@/lib/supabase/cookies";
 
 // Open access for screening — auth optional for saving history
-const PUBLIC = [
+const PUBLIC_PATHS = [
   "/",
   "/assess",
   "/results",
@@ -12,8 +12,9 @@ const PUBLIC = [
   "/privacy",
   "/terms",
   "/sign-in",
-  "/sign-up",
   "/auth/callback",
+  "/auth/confirm",
+  "/auth/verify",
   "/auth/sign-out",
   "/api/analyze",
   "/api/email-results",
@@ -22,7 +23,7 @@ const PUBLIC = [
 ];
 
 export async function middleware(req: NextRequest) {
-  if (PUBLIC.some((p) => req.nextUrl.pathname === p || req.nextUrl.pathname.startsWith(p + "/"))) {
+  if (PUBLIC_PATHS.some((p) => req.nextUrl.pathname === p || req.nextUrl.pathname.startsWith(p + "/"))) {
     return NextResponse.next();
   }
 

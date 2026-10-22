@@ -18,6 +18,10 @@ npm run dev
 
 Open http://localhost:3000
 
+## Sign-in
+
+Optional, and passwordless: "Continue with Google" or "Email me a sign-in link" (the email also carries a one-time code). There are no passwords, password reset or password signup in this app. The session is the shared 6x7 login cookie (`sb-6x7-auth` on `.6x7.gr`). Routes: `/sign-in`, `/auth/callback` (Google and emailed-link return), `/auth/confirm` + `/auth/verify` (token-hash links: the page does nothing until the button is pressed, then a same-origin POST spends the token).
+
 ## Deploy
 
 Vercel project linked to `philipposk/psycscope`, domain `psyc.6x7.gr`, Supabase integration for shared 6x7 auth.
