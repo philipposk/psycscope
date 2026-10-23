@@ -20,6 +20,8 @@ const PUBLIC = [
   "/api/email-results",
   "/api/helplines",
   "/api/pa",
+  "/robots.txt",
+  "/sitemap.xml",
 ];
 
 export async function middleware(req: NextRequest) {

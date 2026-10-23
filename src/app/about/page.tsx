@@ -108,3 +108,9 @@ export default function AboutPage() {
     </div>
   );
 }
+
+export const metadata = {
+  title: "About PsycScope — PsycScope",
+  description: "What PsycScope is, how the screening questions work, and why it is screening only, not a diagnosis.",
+  alternates: { canonical: "/about" },
+};

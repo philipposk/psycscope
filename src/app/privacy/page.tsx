@@ -64,3 +64,9 @@ export default function PrivacyPage() {
     </div>
   );
 }
+
+export const metadata = {
+  title: "Privacy — PsycScope",
+  description: "How PsycScope handles your answers and data.",
+  alternates: { canonical: "/privacy" },
+};

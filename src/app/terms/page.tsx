@@ -13,3 +13,9 @@ export default function TermsPage() {
     </div>
   );
 }
+
+export const metadata = {
+  title: "Terms — PsycScope",
+  description: "Terms of use for PsycScope. Screening only, not medical advice or diagnosis.",
+  alternates: { canonical: "/terms" },
+};
