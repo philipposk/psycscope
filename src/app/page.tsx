@@ -1,8 +1,21 @@
 import Link from "next/link";
 
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "PsycScope",
+  url: "https://psyc.6x7.gr/",
+  description:
+    "Screen 32 well-known psychological disorders with self-report questions and optional AI analysis. Screening only, not diagnosis.",
+  applicationCategory: "HealthApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
 export default function HomePage() {
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       <section className="hero">
         <h1>How many of the 32 best-known disorders might apply to you?</h1>
         <p>
@@ -57,3 +70,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+export const metadata = { alternates: { canonical: "/" } };

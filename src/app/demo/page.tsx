@@ -3,6 +3,7 @@ import DemoClient from "@/components/DemoClient";
 export const metadata = {
   title: "Example demo — PsycScope",
   description: "Sample screening results (not a real assessment).",
+  alternates: { canonical: "/demo" },
 };
 
 export default function DemoPage() {

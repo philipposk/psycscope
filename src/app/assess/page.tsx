@@ -12,3 +12,9 @@ export default function AssessPage() {
     </div>
   );
 }
+
+export const metadata = {
+  title: "Start a screening — PsycScope",
+  description: "Answer self-report questions for 32 well-known psychological disorders, with optional AI analysis. Free, private, screening only.",
+  alternates: { canonical: "/assess" },
+};
