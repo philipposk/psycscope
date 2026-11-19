@@ -22,6 +22,9 @@ const PUBLIC = [
   "/api/pa",
   "/robots.txt",
   "/sitemap.xml",
+  // Share preview images must load without a session (crawlers and chat apps fetch them signed out).
+  "/opengraph-image.png",
+  "/twitter-image.png",
 ];
 
 export async function middleware(req: NextRequest) {
