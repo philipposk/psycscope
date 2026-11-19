@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description:
       "Screen 32 well-known psychological disorders with self-report questions and optional AI analysis. Screening only — not diagnosis.",
   },
-  twitter: { card: "summary" },
+  twitter: { card: "summary_large_image" },
   title: "PsycScope — 32-disorder psychological screening",
   description:
     "Screen 32 well-known psychological disorders with self-report questions and optional AI analysis. Screening only — not diagnosis. By 6x7.gr.",
