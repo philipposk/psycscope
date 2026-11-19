@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
-import { sharedCookieOptions } from "@/lib/supabase/cookies";
+import { cookieOptionsForHost, hostFromHeaders } from "@/lib/supabase/cookies";
 import { trackAppAccess } from "./app-access";
 
 // Open access for screening — auth optional for saving history
@@ -34,7 +34,7 @@ export async function middleware(req: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      cookieOptions: sharedCookieOptions,
+      cookieOptions: cookieOptionsForHost(hostFromHeaders(req.headers)),
       cookies: {
         getAll() {
           return req.cookies.getAll();
